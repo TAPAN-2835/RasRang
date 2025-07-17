@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 const Preloader = ({ onFinish }) => {
@@ -8,6 +8,9 @@ const Preloader = ({ onFinish }) => {
   const fruitRef = useRef();
   const iceRef = useRef();
   const mintRef = useRef();
+  const taglineRef = useRef();
+  const [typed, setTyped] = useState("");
+  const tagline = "Sip the Tastes of India";
 
   useEffect(() => {
     // Animate the liquid rising
@@ -62,6 +65,18 @@ const Preloader = ({ onFinish }) => {
     return () => clearTimeout(timer);
   }, [onFinish]);
 
+  // Typewriter effect for tagline
+  useEffect(() => {
+    let i = 0;
+    setTyped("");
+    const interval = setInterval(() => {
+      setTyped((prev) => prev + tagline[i]);
+      i++;
+      if (i === tagline.length) clearInterval(interval);
+    }, 70);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       ref={overlayRef}
@@ -71,6 +86,7 @@ const Preloader = ({ onFinish }) => {
         inset: 0,
         background: 'rgba(10,10,20,0.98)',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         transition: 'opacity 0.7s',
@@ -114,6 +130,43 @@ const Preloader = ({ onFinish }) => {
         <circle ref={el => (bubblesRef.current[1] = el)} cx="105" cy="140" r="3" fill="#fff" fillOpacity="0.5" />
         <circle ref={el => (bubblesRef.current[2] = el)} cx="95" cy="145" r="2.5" fill="#fff" fillOpacity="0.4" />
       </svg>
+      {/* Tagline with typewriter effect on noise background */}
+      <div
+        style={{
+          background: 'url(/images/noise.png) repeat',
+          padding: '1.2rem 2.5rem',
+          borderRadius: '2rem',
+          boxShadow: '0 2px 16px #0008',
+          marginTop: '2.5rem',
+          display: 'inline-block',
+        }}
+      >
+        <span
+          ref={taglineRef}
+          className="text-gradient"
+          style={{
+            fontFamily: 'Modern Negra, DM Serif Text, serif',
+            fontSize: '2.2rem',
+            letterSpacing: 2,
+            whiteSpace: 'pre',
+            textAlign: 'center',
+            userSelect: 'none',
+          }}
+        >
+          {typed}
+          <span style={{
+            display: 'inline-block',
+            width: '1ch',
+            background: 'linear-gradient(to bottom, #fff, #898989)',
+            marginLeft: '2px',
+            animation: 'blink 1s steps(1) infinite',
+            height: '2.2rem',
+            verticalAlign: 'bottom',
+          }}>
+            {typed.length !== tagline.length ? '|' : ''}
+          </span>
+        </span>
+      </div>
       <span style={{
         color: '#fff',
         fontFamily: 'Modern Negra, DM Serif Text, serif',
@@ -121,6 +174,7 @@ const Preloader = ({ onFinish }) => {
         marginLeft: 32,
         letterSpacing: 2,
         textShadow: '0 2px 8px #000',
+        marginTop: '1.5rem',
       }}>
         Mixing your experience…
       </span>
