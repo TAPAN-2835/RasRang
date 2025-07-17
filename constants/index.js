@@ -8,7 +8,7 @@ const navLinks = [
 	title: "About Us",
  },
  {
-	id: "work",
+	id: "art", // changed from 'work' to 'art' to match the section id
 	title: "The Art",
  },
  {

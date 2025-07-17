@@ -66,22 +66,25 @@ body {
 
     nav {
         @apply fixed z-50 w-full;
+        background: rgba(20, 20, 20, 0.85); /* semi-transparent dark */
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
 
-        div {
-            @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
-        }
+    nav div {
+        @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
+    }
 
-        p {
-            @apply font-modern-negra text-3xl -mb-2;
-        }
+    nav p {
+        @apply font-modern-negra text-3xl -mb-2;
+    }
 
-        a {
-            @apply cursor-pointer text-nowrap md:text-base text-sm;
-        }
+    nav a {
+        @apply cursor-pointer text-nowrap md:text-base text-sm;
+    }
 
-        ul {
-            @apply flex-center lg:gap-12 gap-7;
-        }
+    nav ul {
+        @apply flex-center lg:gap-12 gap-7;
     }
 
     .noisy {
