@@ -66,7 +66,7 @@ body {
 
     nav {
         @apply fixed z-50 w-full;
-        background: rgba(20, 20, 20, 0.65); /* lighter semi-transparent dark */
+        background: rgba(20, 20, 20, 0.45); /* lighter semi-transparent dark */
         backdrop-filter: blur(10px);
         box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
