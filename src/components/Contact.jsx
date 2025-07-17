@@ -97,13 +97,12 @@ const Contact = () => {
 			{socials.map((social) => (
 			 <a
 			 	key={social.name}
-				href={social.url}
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label={social.name}
-				className="social-icon-link"
+			 	href={social.url}
+			 	tabIndex={0}
+			 	aria-label={`Go to home section via ${social.name} icon`}
+			 	className="social-icon-link"
 			 >
-				<img src={social.icon} className="social-icon-img" />
+				<img src={social.icon} className="social-icon-img" alt={social.name} style={{ filter: 'drop-shadow(0 1px 2px #000)' }} />
 			 </a>
 			))}
 		 </div>
