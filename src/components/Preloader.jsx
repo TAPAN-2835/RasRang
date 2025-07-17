@@ -5,6 +5,9 @@ const Preloader = ({ onFinish }) => {
   const liquidRef = useRef();
   const bubblesRef = useRef([]);
   const overlayRef = useRef();
+  const fruitRef = useRef();
+  const iceRef = useRef();
+  const mintRef = useRef();
 
   useEffect(() => {
     // Animate the liquid rising
@@ -29,6 +32,24 @@ const Preloader = ({ onFinish }) => {
         }
       );
     });
+    // Animate fruit slice dropping
+    gsap.fromTo(
+      fruitRef.current,
+      { y: -60, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, delay: 0.5, ease: 'bounce.out' }
+    );
+    // Animate ice cube dropping
+    gsap.fromTo(
+      iceRef.current,
+      { y: -60, opacity: 0 },
+      { y: 10, opacity: 1, duration: 1, delay: 0.8, ease: 'bounce.out' }
+    );
+    // Animate mint leaf dropping
+    gsap.fromTo(
+      mintRef.current,
+      { y: -60, opacity: 0, rotate: -30 },
+      { y: 20, opacity: 1, rotate: 0, duration: 1, delay: 1.1, ease: 'bounce.out' }
+    );
     // Simulate loading complete after 2.5s
     const timer = setTimeout(() => {
       gsap.to(overlayRef.current, {
@@ -73,6 +94,21 @@ const Preloader = ({ onFinish }) => {
         />
         {/* Straw */}
         <rect x="110" y="30" width="8" height="40" rx="4" fill="#f6cd61" />
+        {/* Fruit slice (orange) */}
+        <g ref={fruitRef} style={{ opacity: 0 }}>
+          <circle cx="90" cy="120" r="10" fill="#ffb347" stroke="#e67e22" strokeWidth="2" />
+          <path d="M90 110 v20" stroke="#e67e22" strokeWidth="1.5" />
+          <path d="M80 120 h20" stroke="#e67e22" strokeWidth="1.5" />
+          <path d="M83 113 l14 14" stroke="#e67e22" strokeWidth="1.5" />
+          <path d="M97 113 l-14 14" stroke="#e67e22" strokeWidth="1.5" />
+        </g>
+        {/* Ice cube */}
+        <rect ref={iceRef} x="105" y="135" width="12" height="12" rx="3" fill="#b3e0ff" stroke="#7fd6ff" strokeWidth="1.5" style={{ opacity: 0 }} />
+        {/* Mint leaf */}
+        <g ref={mintRef} style={{ opacity: 0 }}>
+          <ellipse cx="75" cy="135" rx="7" ry="3.5" fill="#6fcf97" />
+          <path d="M75 135 Q76 133, 77 135 Q76 137, 75 135" stroke="#388e3c" strokeWidth="1" fill="none" />
+        </g>
         {/* Bubbles */}
         <circle ref={el => (bubblesRef.current[0] = el)} cx="90" cy="130" r="5" fill="#fff" fillOpacity="0.7" />
         <circle ref={el => (bubblesRef.current[1] = el)} cx="105" cy="140" r="3" fill="#fff" fillOpacity="0.5" />
