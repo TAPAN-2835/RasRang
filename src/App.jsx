@@ -8,7 +8,6 @@ import About from './components/About.jsx'
 import Art from './components/Art.jsx'
 import Menu from './components/Menu.jsx'
 import Contact from './components/Contact.jsx'
-import Preloader from './components/Preloader.jsx'
 import { useState } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
